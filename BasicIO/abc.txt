@@ -1,0 +1,23 @@
+
+This is a test of my write functionality
+This is test2 of my write function functionality
+I like how it seems to be working with multiple lines
+
+OOOOh even this works! Now how do I trigger it to stop? Maybe just have getline read it and then exit if its the appropriate line? ///
+okay bye
+
+
+
+Hello, this is test 3 of my write function, funtionality
+It's working now, yayyy
+Now I can write as many lines as I want
+			hjdjdjflld
+byte!/
+/
+Okay, hopefully final test but we will
+     shsjj     sjjsjsj     sjsjjsjs
+
+This is a test of the QuickThought feature, that allows you to rapidly write down a thought and avoid writing out a full command or know where exactly to put the idea until after you've written it 
+This is perfect for someone, like me, who struggles to get their ideas down on paper fast enough. This will hopefully be of use
+
+test 3

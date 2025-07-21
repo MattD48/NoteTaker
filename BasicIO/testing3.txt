@@ -1,0 +1,5 @@
+whats up7/16: The program can create, write, and delete files. Currently, I can delete multiple files in one command. Next, I will probably try an implementing a way to create multiple files in one go 
+7/16: Just found a way to automatically write to a new line each time I run the write command!
+7/16: Now, I want to find a way to automatically write the date and time to the beginning of each line
+Want to create more robust error handling. Stuff like mistyped commands, overflow protection, etc.
+7/16, end of day: Need to work on QuickThought some more. Everything works except the default location. Whenever I press enter for default, it ignores it. Need to figure out a way for 'enter' to be read and understood as a selection of default
