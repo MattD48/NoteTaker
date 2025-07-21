@@ -3,14 +3,27 @@
 
 using namespace std;
 
+
 void writeToFile(string fileName, string text) {
-    ofstream myFile(fileName, ios::app); // Always append, for now
+    // Grab the default directory (where all files are stored)
+    filesystem::path defaultDir = Secondary::getDefaultDirectory();
+
+    // Define file path in default directory
+    filesystem::path filePath = defaultDir / fileName;
+
+    ofstream myFile(filePath, ios::app); // Always append, for now
     myFile << text;
     myFile.close();
 
 }
 void createFile(string fileName) { // Creates a brand new file
-    ofstream myFile(fileName); 
+    // Grab the default directory (where all files are stored)
+    filesystem::path defaultDir = Secondary::getDefaultDirectory();
+
+    // Define file path in default directory
+    filesystem::path filePath = defaultDir / fileName;
+
+    ofstream myFile(filePath); 
     myFile.close();
     cout << "Done!" << endl;
 }
@@ -37,29 +50,44 @@ void createFile(string fileName) { // Creates a brand new file
 // }
 
 void deleteFile(string fileName) {
-    string response; int status = 1; 
+    string response; int status = false; 
     cout << "Confirm deletion of " << fileName << "? (yes/no) ";
 
-    while (status) {
+    while (!status) {
         cin >> response; 
         Secondary::normalizeInput(response); // convert to all lowercase
 
         if (response == "yes") {
-            status = remove(fileName.c_str()); // returns 0 if successful
-            if (status) {
+            filesystem::path filePath = Secondary::getDefaultDirectory() / fileName; // creates an object that details the path to the target file
+            status = filesystem::remove(filePath); // removes file based on filepath, returns TRUE if successful 
+            if (!status) {
                 cout << "Operation Failed" << endl;
-                status = 0;
+                status = DelDONE;
             }
 
         }
         else {
             if (response == "no") {
                 cout << "Operation Cancelled." << endl;
-                status = 0;
+                status = DelDONE;
             }
             else {
                 cout << "Invalid response, confirming deletion again...? (yes/no)" << endl;
             }
         }
+    }
+}
+
+void listFiles(string path) {
+    if (filesystem::exists(path) && filesystem::is_directory(path)) {
+        int i = 0; 
+        for (const auto& entry : filesystem::directory_iterator(path)) {
+            std::cout << i++ << ": " << entry.path().filename().string() << "   ";
+
+        }
+        cout << endl;
+    }
+    else {
+        cout << "Directory does not exist: " << path << endl;
     }
 }

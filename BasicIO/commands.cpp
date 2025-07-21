@@ -64,6 +64,10 @@ namespace Main {
             textBuff.push_back(returnText);
         }
 
+        // Go ahead and list files for convenience
+        listFiles(Secondary::getDefaultDirectory().string()); 
+
+        // Prompt user to specify a file location or use the default
         cout << "Where do you want this to go? (Enter name of file or press enter again for default \"QuickThought.txt\")" << endl;
         std::getline(cin, returnText); 
 
@@ -87,6 +91,29 @@ namespace Main {
         cin >> returnText;
         cout << "Creating file: " << returnText << "...";
         createFile(returnText);
+    }
+
+// List all Files ===============================================================================
+/*
+    User Command: "ls"
+    Purpose: List all files that are in the designated directory (default is current directory)
+
+*/    
+    void list() {
+        std::filesystem::path currentPath = std::filesystem::current_path();
+        std::string pathStr; 
+
+        cin >> returnText; 
+
+        if (returnText == "fs") {
+            pathStr = currentPath.string() + "/FileStorage";
+        }
+        else {
+            pathStr = returnText;
+        }
+
+        listFiles(pathStr);
+
     }
 
 // Quit Program =================================================================================    
@@ -118,7 +145,7 @@ namespace Main {
             numofFiles = stoi(buff); // string to integer conversion
 
             // Store file names into buffer to access later 
-            for (int i = 0; i < num; i++) {
+            for (int i = 0; i < numofFiles; i++) {
                 cin >> returnName; 
                 fileBuffer.push_back(returnName);
             }
@@ -150,6 +177,7 @@ namespace Main {
         
         cout << "Hello! How can I help you?" << endl;
         cout << "# Create a File, type \'c\', followed by the name of the file" << endl;
+        cout << "# List files, type \'ls\', followed by \"fs\" for File Storage or any other path you want" << endl;
         cout << "# Write to a File, type \'w\', followed by the name of the file" << endl;
         cout << "# Delete a File, type \'d\', followed by the number of files, and all file names" << endl;
         cout << "# QuickThought, type \"qt\"" << endl;
@@ -191,9 +219,31 @@ namespace Secondary {
             {"q", quit}, 
             {"p", printOptions},
             {"d", dlete},
-            {"qt", quickThought}
+            {"qt", quickThought},
+            {"ls", list}
 
         };
+    }
+
+
+// Query Default Directory =================================================================================
+/*
+    Purpose: Creates (if not already existing) and returns the default directory that holds all note files
+
+*/
+    std::filesystem::path getDefaultDirectory() {
+        // Get working directory
+        filesystem::path currentPath = filesystem::current_path();
+
+        // Define default directory to hold files
+        filesystem::path defaultDir = currentPath / "FileStorage";
+
+        // Create Directory if it doesn't exist already
+        if (!filesystem::exists(defaultDir)) {
+            filesystem::create_directory(defaultDir);
+        }
+
+        return defaultDir;
     }
 
 }

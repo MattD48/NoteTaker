@@ -1,7 +1,8 @@
-//enums.hpp
+//commands.hpp
 #ifndef COMMANDS_APP
 #define COMMANDS_APP
 
+#include <filesystem>
 
 namespace Main {
 
@@ -14,7 +15,7 @@ namespace Main {
 
     void quit();
 
-
+    void list();
 
     void printOptions(); // Print available user options
 
@@ -27,6 +28,8 @@ namespace Secondary {
     void normalizeInput(std::string& input); // Used to make all input the same case (lower) to avoid any casing issues
 
     void initCommands(); // Populate our command map with all commands
+
+    std::filesystem::path getDefaultDirectory();
 }
 
 #endif

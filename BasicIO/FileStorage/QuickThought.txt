@@ -1,0 +1,7 @@
+
+
+This is a test of the quick thought file selection
+
+test 2
+dhdhd
+Hello! Just implemented the "ls" function, works pretty well imo. 

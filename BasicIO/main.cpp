@@ -34,8 +34,8 @@ int main () {
             return 0;
         }
 
-        auto itr = Main::commandMap.find(userResponse);
-        if (itr == Main::commandMap.end()) {
+        auto itr = Secondary::commandMap.find(userResponse);
+        if (itr == Secondary::commandMap.end()) {
             cout << "Command Unknown" << endl; // iterator reached the end of the map, meaning entered character is not valid
         }
         else {
