@@ -220,7 +220,8 @@ namespace Secondary {
             {"p", printOptions},
             {"d", dlete},
             {"qt", quickThought},
-            {"ls", list}
+            {"ls", list},
+            {"asc", ASCIIArt}
 
         };
     }
@@ -244,6 +245,42 @@ namespace Secondary {
         }
 
         return defaultDir;
+    }
+
+// Print ASCII Art =========================================================================================
+/*
+    Purpose: Prints a simple ASCII art message 
+
+*/    
+
+    void ASCIIArt() {
+    // Code example from Copilot - Heart    
+        int n = 6; // Size of the heart 
+        for (int i = n / 2; i <= n; i += 2) {
+            for (int j = 1; j < n - i; j += 2) {
+                cout << " ";
+            }
+            for (int j = 1; j <= i; ++j) {
+                cout << "*";
+            }
+            for (int j = 1; j <= n - i; ++j) {
+                cout << " ";
+            }
+            for (int j = 1; j <= i; ++j) {
+                cout << "*";
+            }
+            cout << endl;
+        }
+        for (int i = n; i >= 1; --i) {
+            for (int j = i; j < n; ++j) {
+                cout << " ";
+            }
+            for (int j = 1; j <= (i * 2) - 1; ++j) {
+                cout << "*";
+            }
+            cout << endl;
+        }
+        
     }
 
 }

@@ -30,6 +30,8 @@ namespace Secondary {
     void initCommands(); // Populate our command map with all commands
 
     std::filesystem::path getDefaultDirectory();
+
+    void ASCIIArt();
 }
 
 #endif
