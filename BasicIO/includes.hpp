@@ -6,6 +6,7 @@
 #include "Files.hpp"
 #include "enums.hpp"
 #include "commands.hpp"
+#include "UI.hpp"
 // Add other headers here
 
 #include <iostream>

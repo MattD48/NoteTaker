@@ -171,17 +171,13 @@ namespace Main {
     }
 
 
+// Print Menu =============================================
+/*
+    Purpose: Prints a welcome message and the most commonly used commands and syntax for each
 
-
-    void printOptions() {
-        
-        cout << "Hello! How can I help you?" << endl;
-        cout << "# Create a File, type \'c\', followed by the name of the file" << endl;
-        cout << "# List files, type \'ls\', followed by \"fs\" for File Storage or any other path you want" << endl;
-        cout << "# Write to a File, type \'w\', followed by the name of the file" << endl;
-        cout << "# Delete a File, type \'d\', followed by the number of files, and all file names" << endl;
-        cout << "# QuickThought, type \"qt\"" << endl;
-        cout << "# Quit program, type \'q\'" << endl << endl;
+*/
+    void printMenu() {
+        UI::UIprintMenu();
     }
 
 
@@ -193,6 +189,8 @@ namespace Secondary {
     using namespace Main;
 
     std::map<std::string, std::function<void()>> commandMap;  
+
+    string respBuff;
 
 // Normalize Input =================================================================================    
 /*
@@ -217,14 +215,50 @@ namespace Secondary {
             {"w", write},
             {"c", create},
             {"q", quit}, 
-            {"p", printOptions},
+            {"p", printMenu},
             {"d", dlete},
             {"qt", quickThought},
             {"ls", list},
-            {"asc", ASCIIArt}
+            {"asc", ASCIIArt}, 
+            {"help", help}
 
         };
     }
+
+
+// Print available commands "help" ================================================================================
+/*
+
+    Purpose: Prints a reference to a specific (or ALL) command and a short description of what it does/how it works
+    Syntax: help {command name} 
+            help ALL
+
+*/
+    void help() {
+
+        cin >> respBuff; // Read in the input from the user, should be the command to get help with or "ALL"
+
+        Secondary::normalizeInput(respBuff); // Ensure a normalized string
+
+        // User requested help with all commands 
+        if (respBuff == "all") { 
+            UI::UIprintHelp(respBuff); // Call function that will print help references
+        }
+
+        // User requested help with a specific command
+        else {
+            auto itr = Secondary::commandMap.find(respBuff);
+
+            if (itr == Secondary::commandMap.end()) {
+                cout << "Command Unknown" << endl; // iterator reached the end of the map, meaning entered character is not valid
+            }
+            else {
+                UI::UIprintHelp(respBuff); 
+            }
+        }
+    }
+
+
 
 
 // Query Default Directory =================================================================================

@@ -29,6 +29,8 @@ namespace Secondary {
 
     void initCommands(); // Populate our command map with all commands
 
+    void help(); // Prints a reference description for the requested command
+
     std::filesystem::path getDefaultDirectory();
 
     void ASCIIArt();

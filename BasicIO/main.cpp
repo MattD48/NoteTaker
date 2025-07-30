@@ -19,7 +19,7 @@ using namespace std;
 int main () {
 
     Secondary::initCommands(); // Initialize commands provided in commands.cpp
-    Main::printOptions(); // Print user options
+    UI::UIprintMenu(); // Print user options
 
     string userResponse;
 
