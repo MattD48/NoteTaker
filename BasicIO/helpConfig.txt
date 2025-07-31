@@ -1,0 +1,73 @@
+ "help" command Configuration File
+
+###
+w
+Write
+
+    Purpose: Writes to specified file or creates new file if not already existing
+    Syntax: w {filename}
+    Example: w testFile.txt
+
+###
+c
+Create 
+    
+    Purpose: Creates a new file with the provided fileName
+    Syntax: c {fileName}
+    Example: c testFile.txt    
+
+###
+qt
+QuickThought
+
+    Purpose: Behaves similar to write function, but asks for fileName after the user finishes writing content
+    Syntax: qt
+    Example: qt  
+             *write content*
+            Prompt: "Where do you want this to go? (Enter name of file or press enter again for default \"QuickThought.txt\")"
+
+###
+d
+Delete
+
+    Purpose: Deletes a file with the provided fileName. 
+    Syntax: d <m> {fileName[1]} {fileName[2]} ... {fileName[m]}
+    Example: d 2 testFile1.txt file2_test.txt
+
+###
+ls
+List
+
+    Purpose: List all files that are in the designated directory (default is FileStorage directory)
+    Syntax: ls {directory}
+    Example: ls fs
+            *prints out FileStorage directory*
+
+###
+p
+Print Menu
+
+    Purpose: Prints a welcome message and the most commonly used commands and syntax for each
+    Syntax: p
+    Example: p
+            *prints menu*
+
+###
+asc
+Ascii Art 
+
+    Purpose: Prints a simple ASCII art message 
+    Syntax: asc
+    Example: asc
+            *prints ASCII art*
+
+###
+help
+Help command
+
+    Purpose: Prints a reference to a specific (or ALL) command and a short description of what it does/how it works
+    Syntax: help {command name} 
+    Example: help w
+            *prints Write command reference*
+
+###

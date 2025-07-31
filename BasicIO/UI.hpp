@@ -11,6 +11,8 @@ namespace UI {
 
     void UIprintHelp(std::string command);
 
+    void UIinitHelpConfig();
+
 };
 
 

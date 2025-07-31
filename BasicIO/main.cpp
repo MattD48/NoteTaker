@@ -19,7 +19,9 @@ using namespace std;
 int main () {
 
     Secondary::initCommands(); // Initialize commands provided in commands.cpp
+    UI::UIinitHelpConfig(); // Store help command configuration file
     UI::UIprintMenu(); // Print user options
+
 
     string userResponse;
 

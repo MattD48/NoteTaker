@@ -14,4 +14,9 @@ namespace Secondary { // Created namespace for better grouping/readability
 
 }
 
+namespace UI {
+
+    extern std::map<std::string, std::string> helpConfigMap; // Constainer to store helpConfig data from helpConfig.txt
+}
+
 #endif

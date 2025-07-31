@@ -17,6 +17,9 @@
 #include <limits>
 #include <filesystem>
 
+#include <cctype>
+#include <locale>
+
 using namespace std;
 
 #endif // INCLUDES_HPP

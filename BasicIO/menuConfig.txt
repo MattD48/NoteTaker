@@ -1,0 +1,12 @@
+Menu Configuration File
+
+###
+Hello! Welcome to NoteTaker
+
+# Available Commands #
+    w   c   qt   d 
+    ls  q   p    asc
+
+# For a reference to each command, type "help", followed
+# by the command. For a reference to all commands, type
+# "help all". 
