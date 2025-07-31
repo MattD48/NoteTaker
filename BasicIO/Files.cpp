@@ -3,6 +3,9 @@
 
 using namespace std;
 
+namespace Files {
+
+std::map<int, std::string> fileListMap; // Used to store names of files that are contained in a certain directory    
 
 void writeToFile(string fileName, string text) {
     // Grab the default directory (where all files are stored)
@@ -82,6 +85,11 @@ void listFiles(string path) {
     if (filesystem::exists(path) && filesystem::is_directory(path)) {
         int i = 0; 
         for (const auto& entry : filesystem::directory_iterator(path)) {
+
+            // Store file in file map for easy selection
+            fileListMap[i] = entry.path().filename().string(); 
+
+            // Print file number and name for easy reference
             std::cout << i++ << ": " << entry.path().filename().string() << "   ";
 
         }
@@ -90,4 +98,6 @@ void listFiles(string path) {
     else {
         cout << "Directory does not exist: " << path << endl;
     }
+}
+
 }

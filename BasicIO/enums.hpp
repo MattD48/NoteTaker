@@ -19,4 +19,10 @@ namespace UI {
     extern std::map<std::string, std::string> helpConfigMap; // Constainer to store helpConfig data from helpConfig.txt
 }
 
+namespace Files {
+
+    extern std::map<int, std::string> fileListMap; // Container to store names of files in a specific directory
+
+}    
+
 #endif

@@ -1,6 +1,8 @@
 #include "includes.hpp"
 
 
+using namespace Files;
+
 // Primary functions that make up the heart of the program
 namespace Main {  
    
@@ -15,6 +17,16 @@ namespace Main {
 */    
     void write() {
         cin >> returnName;
+
+        // For quick reference (using list files command to specify write destination based on the number of the file)
+        // ***Planning on making this an individual function to call instead of leaving here***
+        if (returnName.find("^") != string::npos) { 
+            // Grab index of file in map (second value in returnName)
+            int index = stoi(&returnName[1]);
+
+            // Assign the file name that is paired with the index
+            returnName = Files::fileListMap[index]; 
+        }
 
         // Clear cin buffer to prevent getline from reading newlines
         std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); 
@@ -106,7 +118,7 @@ namespace Main {
         cin >> returnText; 
 
         if (returnText == "fs") {
-            pathStr = currentPath.string() + "/FileStorage";
+            pathStr = currentPath.string() + "\\FileStorage";
         }
         else {
             pathStr = returnText;

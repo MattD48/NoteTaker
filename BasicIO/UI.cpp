@@ -25,7 +25,7 @@ namespace UI {
                 startPrint = 1;
             }
 
-            if (startPrint) {
+            else if (startPrint) {
                 cout << line << endl;
             }    
         }
@@ -33,14 +33,6 @@ namespace UI {
         startPrint = 0; // Reset for next call
 
         fileOne.close(); // Close file
-
-       // cout << "Hello! Welcome to NoteTaker!" << endl;
-        // cout << "# Create a File, type \'c\', followed by the name of the file" << endl;
-        // cout << "# List files, type \'ls\', followed by \"fs\" for File Storage or any other path you want" << endl;
-        // cout << "# Write to a File, type \'w\', followed by the name of the file" << endl;
-        // cout << "# Delete a File, type \'d\', followed by the number of files, and all file names" << endl;
-        // cout << "# QuickThought, type \"qt\"" << endl;
-        // cout << "# Quit program, type \'q\'" << endl << endl;
         
     }
 

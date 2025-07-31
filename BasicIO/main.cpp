@@ -2,17 +2,7 @@
 
 using namespace std;
 
-// void writeToFile(string fileName, string text) {
-//     ofstream myFile;
-//     myFile.open(fileName);
-//     myFile << text;
-//     myFile.close();
-
-// }
-// void createFile(string fileName){
-//     ofstream myFile(fileName); 
-//     myFile.close();
-// }
+using namespace Files;
 
 
 

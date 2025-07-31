@@ -11,14 +11,18 @@
 #include <fstream>
 #include <iostream>
 
-void writeToFile(std::string fileName, std::string text);
+namespace Files {
 
-void createFile(std::string fileName);
+    void writeToFile(std::string fileName, std::string text);
 
-// void combineFiles(std::string file1, std::string file2, std::string combined);
+    void createFile(std::string fileName);
 
-void deleteFile(std::string fileName);
+    // void combineFiles(std::string file1, std::string file2, std::string combined);
 
-void listFiles(std::string path);
+    void deleteFile(std::string fileName);
+
+    void listFiles(std::string path);
+
+}
 
 #endif // FILES_HPP
