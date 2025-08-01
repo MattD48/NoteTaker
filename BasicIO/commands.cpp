@@ -18,14 +18,11 @@ namespace Main {
     void write() {
         cin >> returnName;
 
-        // For quick reference (using list files command to specify write destination based on the number of the file)
-        // ***Planning on making this an individual function to call instead of leaving here***
+        // Quick Reference detected
         if (returnName.find("^") != string::npos) { 
-            // Grab index of file in map (second value in returnName)
-            int index = stoi(&returnName[1]);
+            string tempBuff = Secondary::trimQuickRefence(returnName);
 
-            // Assign the file name that is paired with the index
-            returnName = Files::fileListMap[index]; 
+            returnName = Secondary::quickReference(tempBuff);
         }
 
         // Clear cin buffer to prevent getline from reading newlines
@@ -85,6 +82,12 @@ namespace Main {
 
         // If user presses enter, the default file is used. If not, use the file they specify
         returnName = (returnText.empty()) ? defaultName : returnText; 
+
+        // Quick Reference detected
+        if (returnName.find("^") != string::npos) { 
+            string tempBuff = Secondary::trimQuickRefence(returnName);
+            returnName = Secondary::quickReference(tempBuff);
+        }
 
         // Write lines to file after the user is done writing.
         for (auto t:textBuff) { 
@@ -174,6 +177,13 @@ namespace Main {
         }
     // Case 2: Only one file to delete -----------------------------------------   
         else { 
+
+            // Quick Reference detected
+            if (buff.find("^") != string::npos) { 
+                string tempBuff = Secondary::trimQuickRefence(buff);
+                buff = Secondary::quickReference(tempBuff);
+            }
+                            
             deleteFile(buff);
 
             // Reset input buffer
@@ -338,22 +348,123 @@ namespace Secondary {
 */
     // Code from Microsoft CoPilot
 
-    // // Trim from start (in place)
-    // static inline void ltrim(std::string &s) {
-    //     s.erase(s.begin(), std::find_if(s.begin(), s.end(),
-    //         { return !std::isspace(ch); }));
-    // }
 
-    // // Trim from end (in place)
-    // static inline void rtrim(std::string &s) {
-    //     s.erase(std::find_if(s.rbegin(), s.rend(),
-    //         [](unsignedstd::isspace(ch); ).base(), s.end()));
-    // }
+    std::string trimQuickRefence(const std::string& input) {
+        std::string result;
+        for (char ch : input) {
+            if (std::isdigit(ch)) {
+                result += ch;
+            }
+        }
+        return result;
+    }
 
-    // // Trim from both ends (in place)
-    // static inline void trim(std::string &s) {
-    //     ltrim(s);
-    //     rtrim(s);
-    // }
+
+// Quick Reference =============================================================
+
+/*
+    Purpose: Allows the user to select from a list of files printed by the "ls" command to write, quickthought, or delete
+    Syntax: {command} ^{number of file}
+    Example: w ^3
+            *writes to file #3, as printed by the list command*
+*/
+
+    string quickReference(string numOfFile) {
+        string returnString = numOfFile;
+        string tempString; string selectionBuff;
+        int index;
+
+        bool quickRefDone = false;
+
+        bool selection_confirmed = false;
+
+        // Begin top level loop, runs until user confirms their choice
+        while (!quickRefDone) {
+
+            // Grab index, confirm it is within range
+            index = stoi(numOfFile);
+            if (index >= static_cast<int>(fileListMap.size())) {
+                cout << "No such file. Enter valid index: ";
+                cin >> numOfFile;
+                numOfFile = Secondary::trimQuickRefence(numOfFile);
+            }
+
+            else {
+
+                // Begin sub level loop, Prompt User for confirmation of selection
+                while (!selection_confirmed) {
+
+                    // Update tempstring
+                    index = stoi(numOfFile);
+                    tempString = Files::fileListMap[index];
+
+                    // Ask user to confirm selection
+                    cout << "Confirm Selection of " << tempString << "? (y/n) .....";
+                    cin >> selectionBuff; 
+
+                    normalizeInput(selectionBuff);
+
+                    // User selected "y", confirming the quick reference file choice and returning the actual file name.
+                    if (selectionBuff == "y") {
+                        cout << "Selection Confirmed!" << endl;
+                        
+                        selection_confirmed = true;
+                        quickRefDone = true;
+
+                        returnString = tempString;
+
+                    }
+
+                    // User selected "n", rejecting the file choice and will be prompted for another index. 
+                    else if (selectionBuff == "n") {
+                        cout << "Enter valid index: ";
+                        cin >> numOfFile;
+                        numOfFile = Secondary::trimQuickRefence(numOfFile); // Trim function to ensure proper formatting
+                    }   
+
+                    else {
+                        cout << "Invalid input."; 
+                    }
+                }
+            }
+        }
+
+        return returnString;
+
+        // // Grab index of file in map (second value in returnName)
+        // // If index is greater than the indexes available, exit quick reference
+        // int index = stoi(numOfFile);
+        // cout << static_cast<int>(fileListMap.size()); 
+        // if (index > static_cast<int>(fileListMap.size())) {
+        //     cout << "No such file." << endl;
+        //     selection_confirmed = true;
+        //     //returnString = "error";
+        // }
+
+        // // Store file name in temporary string, if index is valid
+        // else {
+        //     tempString = Files::fileListMap[index];
+        // }
+
+        // // Prompt User for confirmation of selection
+        // while (!selection_confirmed) {
+        //     cout << "Confirm Selection of " << tempString << "? (y/n) .....";
+        //     cin >> selectionBuff; 
+
+        //     normalizeInput(selectionBuff);
+
+        //     if (selectionBuff == "y") {
+        //         cout << "Confirmed!" << endl;
+        //         selection_confirmed = true;
+        //         returnString = tempString;
+        //     }
+
+        //     else if (selectionBuff == "n") {
+        //       //  cout << 
+        //     }
+        // }
+
+
+    }
 
 }

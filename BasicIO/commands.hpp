@@ -34,6 +34,10 @@ namespace Secondary {
     std::filesystem::path getDefaultDirectory();
 
     void ASCIIArt();
+
+    std::string trimQuickRefence(const std::string& input); // Trim function used for Quick Reference to extract the index
+
+    std::string quickReference(std::string numOfFile); // Used for easier selection of destination file
 }
 
 #endif
