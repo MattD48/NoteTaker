@@ -1,7 +1,7 @@
 Menu Configuration File
 
 ###
-Hello! Welcome to NoteTaker
+Hello! Welcome to NoteTaker (V1.6)
 
 # Available Commands #
     w   c   qt   d 
