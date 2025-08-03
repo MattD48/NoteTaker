@@ -1,0 +1,22 @@
+
+Linux Notes
+
+Linux Filesystem
+/ = root, where everything begins
+/bin = binary, where all executables and commands (ls, cp, mv, cat) are located. 
+/sbin = system binary, holds specialized system utilities necessary for system level operations (mount, shutdown, etc.)
+/lib = library, provide common files that are often needed by many different parts of the system (read files, configs, etc.)
+/usr = Unix System Resources, holds user executables, installed programs, holds non-essential software, read-only
+/boot = boot, holds all files that are necessary for successful system bootup
+/dev = Device, holds device files that act as interfaces to hardware on the system. (ex. /dev/sda indicates a hdd)
+/etc = editable text configuration, holds system wide configuration files that can edited (ex. /etc/.ssh holds config files that allow for specifying hosts)
+/home = holds all user folders and subsequent files (ex. /home/maddo)
+/media = media, where external devices can be mounted and accessed. Designed for removable devices and managed automatically by the system. Different than /dev, which holds the device information, /media holds the device data that is useful to the user.
+/mnt = mount, reserved for access to a device as long as it is plugged in. 
+/proc = process, stores details on running processes and what devices are doing in collaboration with the kernel
+/sys = acts as a dynamic interface between the kernel and hardware, can be edited to tweak kernel settings 
+/run = holds temp runtime data that is written to by running files. deleted on shutdown
+/srv = Service, information that is shared with connected systems (ex. web server, /srv/www. may hold the data necessary for running the website and will be accessed by the web host) 
+/var = variable, store files that will change often during system operation (log files, meta data)
+/tmp = Temporary, houses temporary files that programs may need to store to run, and will then delete after use
+/opt = Optional, 3rd-party files can be stored here (ex. /opt/google/chrome), provides a safe space for this data without interfering with typical Linux operation. 

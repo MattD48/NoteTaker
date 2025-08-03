@@ -31,6 +31,8 @@ namespace Secondary {
 
     void help(); // Prints a reference description for the requested command
 
+    void clearScreen(); // Clears console 
+
     std::filesystem::path getDefaultDirectory();
 
     void ASCIIArt();

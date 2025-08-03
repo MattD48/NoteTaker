@@ -1,0 +1,17 @@
+
+Testing the functionality of the peripheral functions. For setting the data type (REAL,32 , ASCII, etc.), you must change the define MODE listed at the top of SCPI.hpp. This means the mode will be selected at compile time and will only compile the respective data type you selected. This essentially means that setDataType() doesn't do much. While it can change the encoding type, the program will still reset the type whenever it acquires the waveform data BASED on the defines set at compile time. This should still work fine, but probably worth mentioning in the manual. the queryDataType() function works fine and can inform the user of what data format is being used. But it all relies on those intitial defines placed in scpi.hpp.
+
+Having an issue with setting the record length, program seems to recognize the PREVIOUS set record length, but not the current one. May need to change the ordering
+
+Enumerations print as numbers 0-4 (or higher)., want to find a way to print that as useful text instead of just the number of the enumeration.
+
+Seems like there is a pattern that whenever I change the record length or trigger settings remotely, it takes two runs for it to take effect. For example, If I set the record length to 100k, but the past runs I've done it at 200k, it will run one time with 200k, then the next run will be 100k. Might be that the oscope essentially takes a screenshot of the previous setup and the change doesn't take effect until the object closes. Not a big deal, just something to consider. 
+
+Status update 7/21: Incorporated a setupOscope() function to assign a user defined record length (up to and including   200k) 
+setupOscope() also sets the trigger type and edge. 
+Once setupOscope() has run, readOscilloscope will run like normal, using queryRecordLength() instead of the header (while a header object is still instantiated for use later if desired). From here, the program runs as it did in Ver 1.0
+Removed TESTER() function (not necessary for final version). 
+Everything looks good to me, going to update the User Manual. Explain the new structure, where setupOscope comes first, then readOscilloscopeData(). 
+Cleaning up scpi.cpp and scpi.hpp and enums.hpp (old function declarations, irrelevant info
+Removed REAL32ModeConverter(), no longer needed for REAL-32 Mode
+Ver 2.0 complete, marking as "Currently being Used" in User Manual

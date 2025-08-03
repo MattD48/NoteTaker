@@ -44,7 +44,28 @@
           "ignoreFailures": true
         }
       ]
-    }
+    },
+    {
+      "name": "Debug C++ Program",
+      "type": "cppdbg",
+      "request": "launch",
+      "program": "${workspaceFolder}/main_program",
+      "args": [],
+      "stopAtEntry": false,
+      "cwd": "${workspaceFolder}",
+      "environment": [],
+      "externalConsole": false,
+      "MIMode": "gdb",
+      "setupCommands": [
+        {
+          "description": "Enable pretty-printing for gdb",
+          "text": "-enable-pretty-printing",
+          "ignoreFailures": true
+        }
+      ],
+      "preLaunchTask": "build cpp project",
+      "miDebuggerPath": "/usr/bin/gdb"  // adjust path if needed
+    }    
   ],
   "version": "2.0.0"
 }

@@ -1,0 +1,29 @@
+
+NoteTaker Development Notes and Tracker
+
+Version 1.3: Added quickthought functionality as well as multi-file delete
+
+Version 1.4: Added list files functionality, and default directory creation and query
+Idea: Have different editor modes, like plain text and "notes", that insert bullet points or different spacing based on the mode selected. Can be an extra few characters appended to command to indicate desired mode
+
+Want to implement a "help" command that will list all commands and general structure of the program to the user for reference
+Also want to full incorporate the "ls" file select with numbers, essentially being able to select a specific number that maps to a file instead of having to write out the entire name of the file.
+Future idea for setting up menus and maybe making the program look nicer would be to be able to write all the menu text and art in a text file, then have the program load that text file and print the display. Allows for more complicated deisgns that won't clutter the code.
+Creating a UI.cpp and UI.hpp to house my functions that print for the user interface. Not everything that prints text for decoration purposes will go here, but things like pulling data from a config file can go here and any other lengthy cout << block.
+
+More on config files: These will be text files that hold lengthy or otherwise obtuse character sets that are design for decoration or creating menus. To avoid putting these long blocks in something like Files.cpp or commands.cpp, I created UI.cpp to house functions that can pull data from a text file and then print that. Not sure if I will print the text in UI.cpp or store it in a container and then return it back to the function that called it, but overall this is the idea and I think it declutters the whole program
+
+Version 1.5: Added UIinitHelpConfig and UIprintHelp functions that import data from a configuration file (helpConfig.txt) and print a reference about commands when requested, respectively. This improves ease of use, as now users can quickly understand the purpose of a command, what commands are available, and what the proper syntax is. 
+Added menuConfig.txt for the same reason as adding helpConfig.txt. This time, it just prints whatever is in menuConfig all at once, instead of storing into a container, and then printing. 
+
+
+Incorporating a feature called "quick reference", that will allow the use to specify the destination of a write, quickthought, or delete command based on the enumeration done in the list files command. The syntax would be "w ^0" to write to the file with the 0 index in the list files return prompt (and more specifically, the 0 index of the listFilesMap). 
+
+Probably best to create a "Quick Reference" function, that takes in a string, figures out which index they chose, ask to confirm their selection, and then return the name of the file in string form. This will declutter the commands.cpp section and avoid lengthy code. 
+At this point in time, Quick Reference is still located in commands.cpp, in the write function. Planning on moving to its own dedicated function that can be called in the write function, quickthought function, or delete function. The syntax for quick reference is as follows: " w ^0 ". Quick Reference function needs to check for "^" character, then figure out what file that index is matched with, ask the user if the file they selected is correct, and then return the file name if yes, or ask again to if no, or allow them to press "q" to quit the write/quickthought/delete operation altogether.
+
+This brings up another idea, that there should be a way to cancel an operation (write, quickthought, delete) mid way through the process in case things are messed up. Being able to reuse "q", while also avoiding accidently quitting the entire program is important. 
+
+Added Quick Reference function. Takes in a string that represents the index chosen, returns a string that gives the file name itself. Fully integrated into write command, adding to quick thought and delete now.
+
+Version 1.6: Added full Quick Reference feature. Currently used in delete (only available for single file deletions), quick thought, and write commands. Written as a function, so it can be easily incorporated into new or existing commands. 

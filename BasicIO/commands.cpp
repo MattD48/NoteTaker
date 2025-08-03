@@ -242,7 +242,8 @@ namespace Secondary {
             {"qt", quickThought},
             {"ls", list},
             {"asc", ASCIIArt}, 
-            {"help", help}
+            {"help", help}, 
+            {"clr", clearScreen}
 
         };
     }
@@ -431,40 +432,16 @@ namespace Secondary {
 
         return returnString;
 
-        // // Grab index of file in map (second value in returnName)
-        // // If index is greater than the indexes available, exit quick reference
-        // int index = stoi(numOfFile);
-        // cout << static_cast<int>(fileListMap.size()); 
-        // if (index > static_cast<int>(fileListMap.size())) {
-        //     cout << "No such file." << endl;
-        //     selection_confirmed = true;
-        //     //returnString = "error";
-        // }
+    }
 
-        // // Store file name in temporary string, if index is valid
-        // else {
-        //     tempString = Files::fileListMap[index];
-        // }
+// Clear Screen ========================================================================
+/*
+    Purpose: Uses a special code to clear the console of all previous prompts and responses
 
-        // // Prompt User for confirmation of selection
-        // while (!selection_confirmed) {
-        //     cout << "Confirm Selection of " << tempString << "? (y/n) .....";
-        //     cin >> selectionBuff; 
-
-        //     normalizeInput(selectionBuff);
-
-        //     if (selectionBuff == "y") {
-        //         cout << "Confirmed!" << endl;
-        //         selection_confirmed = true;
-        //         returnString = tempString;
-        //     }
-
-        //     else if (selectionBuff == "n") {
-        //       //  cout << 
-        //     }
-        // }
-
-
+*/   
+    void clearScreen() {
+        // ANSI escape code to clear screen and move cursor to top-left
+        std::cout << "\033[2J\033[1;1H";
     }
 
 }
